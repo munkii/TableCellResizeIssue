@@ -1,5 +1,5 @@
 # TableCellResizeIssue
-Small MVVMCross iOS project to support this Stack Overflow question, "UILabel not wrapping in UITableView until device rotate (iOS8)" http://stackoverflow.com/questions/30099363/uilabel-not-wrapping-in-uitableview-until-device-rotate-ios8
+Small MVVMCross iOS project to support this Stack Overflow question, **"UILabel not wrapping in UITableView until device rotate (iOS8)"** http://stackoverflow.com/questions/30099363/uilabel-not-wrapping-in-uitableview-until-device-rotate-ios8
 
 1. To exercise the project load it up in a Simulator or device
 2. Once the first View loads press "Search"
