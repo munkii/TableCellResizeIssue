@@ -42,8 +42,6 @@ namespace TableCellResizeIssue.Views
             {
                 vm.GoToSearchCommand.Execute(null);
             }
-            
-            ////this.ViewModel.DoSomething();
         }
     }
 }
