@@ -5,6 +5,7 @@ using System.Text;
 
 using Foundation;
 using UIKit;
+using TableCellResizeIssue.CustomCells;
 
 namespace TableCellResizeIssue.Controls.CustomCells
 {
@@ -193,33 +194,35 @@ namespace TableCellResizeIssue.Controls.CustomCells
             base.LayoutSubviews();
 
             // This weirdness is needed to push the label to wrap
-            this.customerNameLabel.PreferredMaxLayoutWidth = this.customerNameLabel.Frame.Size.Width;
+//            this.customerNameLabel.PreferredMaxLayoutWidth = this.customerNameLabel.Frame.Size.Width;
         }
 
-        public void UpdateCell(string artistName, string songTitle)
-        {
-            this.customerNameLabel.Text = artistName;
-            this.bornDataLabel.Text = songTitle;
-        }
-
-        public nfloat CalculateHeight(CGRect tableViewFrame)
-        {
-            this.Bounds = new CGRect(0, 0, tableViewFrame.Width, Bounds.Height);
-            this.SetNeedsLayout();
-            this.LayoutIfNeeded();
-
-            //This is where the magic happens
-            var size = ContentView.SystemLayoutSizeFittingSize(UILayoutFittingCompressedSize);
-
-            return size.Height + 1; //Add 1 since we are using cell separators.
-        }
+        //Not necessary anymore
+//        public void UpdateCell(string artistName, string songTitle)
+//        {
+//            this.customerNameLabel.Text = artistName;
+//            this.bornDataLabel.Text = songTitle;
+//        }
+//
+        //Not necessary anymore
+//        public nfloat CalculateHeight(CGRect tableViewFrame)
+//        {
+//            this.Bounds = new CGRect(0, 0, tableViewFrame.Width, Bounds.Height);
+//            this.SetNeedsLayout();
+//            this.LayoutIfNeeded();
+//
+//            //This is where the magic happens
+//            var size = ContentView.SystemLayoutSizeFittingSize(UILayoutFittingCompressedSize);
+//
+//            return size.Height + 1; //Add 1 since we are using cell separators.
+//        }
 
         /// <summary>
         /// Creates the layout.
         /// </summary>
         private void CreateView()
         {
-            this.customerNameLabel = new UILabel();
+            this.customerNameLabel = new AutoLayoutLabel();
             this.customerNameLabel.AccessibilityIdentifier = "CustomerItemCell_CustomerNameLabel";
             this.customerNameLabel.Font = UIFont.PreferredHeadline; //// CustomerBanner.GetBoldDerivative(UIFont.PreferredHeadline);
             this.customerNameLabel.Lines = 0;
@@ -287,21 +290,28 @@ namespace TableCellResizeIssue.Controls.CustomCells
                 this.bornLabel.AtBottomOf(this.ContentView, 5),
                 this.bornLabel.AtLeftOf(this.ContentView, 15),
                 this.bornDataLabel.WithSameTop(this.bornLabel),
-                this.bornDataLabel.ToRightOf(this.bornLabel, LabelDataMargin));
+                this.bornDataLabel.ToRightOf(this.bornLabel, LabelDataMargin),
+                this.bornDataLabel.AtBottomOf(this.ContentView, 5));
 
             this.ContentView.AddConstraints(
                 this.genderLabel.WithSameTop(this.bornLabel),
-                this.genderDataLabel.WithSameTop(this.bornLabel));
+                this.genderLabel.AtBottomOf(this.ContentView, 5),
+                this.genderDataLabel.WithSameTop(this.bornLabel),
+                this.genderDataLabel.AtBottomOf(this.ContentView, 5));
 
             this.ContentView.AddConstraints(
                 this.customerNumberLabel.WithSameTop(this.bornLabel),
-                this.customerNumberDataLabel.WithSameTop(this.bornLabel));
+                this.customerNumberLabel.AtBottomOf(this.ContentView, 5),
+                this.customerNumberDataLabel.WithSameTop(this.bornLabel),
+                this.customerNumberDataLabel.AtBottomOf(this.bornLabel, 5));
 
             this.ContentView.AddConstraints(
                                             this.genderLabel.ToRightOf(this.bornDataLabel, DataMargin),
                                             this.genderDataLabel.ToRightOf(this.genderLabel, LabelDataMargin),
                                             this.customerNumberLabel.ToRightOf(this.genderDataLabel, DataMargin),
                                             this.customerNumberDataLabel.ToRightOf(this.customerNumberLabel, LabelDataMargin));
+
+
             
             ////this.ContentView.TranslatesAutoresizingMaskIntoConstraints = false;
             this.SetNeedsUpdateConstraints();

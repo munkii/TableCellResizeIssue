@@ -28,18 +28,19 @@ namespace TableCellResizeIssue.Controls.CustomCells
         {
         }
 
-        public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
-        {
-            var cell = tableView.DequeueReusableCell(new NSString("CustomerItemCell")) as CustomerItemCell;
-
-            var customer = GetItemAt(indexPath) as ItemViewModel<Customer>;
-            cell.UpdateCell(customer.Model.DisplayPersonName, customer.Model.DisplayDateOfBirth);
-
-            var height = cell.CalculateHeight(tableView.Frame);
-
-            ////Debug.Write("GetHeightForRow.Height: " + height);
-
-            return height;
-        }
+        //Since you're using iOS 8, this is not necessary anymore.
+//        public override nfloat GetHeightForRow(UITableView tableView, NSIndexPath indexPath)
+//        {
+//            var cell = tableView.DequeueReusableCell(new NSString("CustomerItemCell")) as CustomerItemCell;
+//
+//            var customer = GetItemAt(indexPath) as ItemViewModel<Customer>;
+//            cell.UpdateCell(customer.Model.DisplayPersonName, customer.Model.DisplayDateOfBirth);
+//
+//            var height = cell.CalculateHeight(tableView.Frame);
+//
+//            Debug.WriteLine(String.Format("GetHeightForRow.Height ({0}): {1}", customer.Model.DisplayPersonName, height));
+//
+//            return height;
+//        }
     }
 }
