@@ -1,0 +1,15 @@
+﻿<Properties StartupItem="TableCellResizeIssue/TableCellResizeIssue.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone4s.8.3" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TableCellResizeIssue/Controls/CustomCells/CustomerItemCell.cs">
+    <Files>
+      <File FileName="TableCellResizeIssue/Views/SearchView.cs" Line="141" Column="67" />
+      <File FileName="TableCellResizeIssue/Controls/CustomCells/CustomerItemTableViewSource.cs" Line="31" Column="67" />
+      <File FileName="TableCellResizeIssue/Controls/CustomCells/CustomerItemCell.cs" Line="197" Column="104" />
+      <File FileName="TableCellResizeIssue/Controls/CustomCells/AutoLayoutLabel.cs" Line="9" Column="30" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
