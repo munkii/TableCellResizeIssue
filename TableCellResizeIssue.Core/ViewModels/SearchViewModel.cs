@@ -137,7 +137,7 @@ namespace TableCellResizeIssue.Core.ViewModels
 
             results.Add(new ItemViewModel<Customer>()
             {
-                Model = new Customer() { DisplayDateOfBirth = "04-May-1954 (61y)", DisplayPersonName = "THI, Robert" }
+                Model = new Customer() { DisplayDateOfBirth = "04-May-1954 (61y)", DisplayPersonName = "THI, Robert", TextList = new List<string>() { "Hello", "World" } }
             });
 
             results.Add(new ItemViewModel<Customer>()
@@ -147,7 +147,7 @@ namespace TableCellResizeIssue.Core.ViewModels
 
             results.Add(new ItemViewModel<Customer>()
             {
-                Model = new Customer() { DisplayDateOfBirth = "04-May-1954 (61y)", DisplayPersonName = "THIBAUT, Alexander" }
+                Model = new Customer() { DisplayDateOfBirth = "04-May-1954 (61y)", DisplayPersonName = "THIBAUT, Alexander", TextList = new List<string>() { "Hello", "World", "Goodbye Cruel World" } }
             });
 
             results.Add(new ItemViewModel<Customer>()
@@ -196,7 +196,7 @@ namespace TableCellResizeIssue.Core.ViewModels
 
             results.Add(new ItemViewModel<Customer>()
             {
-                Model = new Customer() { DisplayDateOfBirth = "30-Oct-1974 (78y)", DisplayPersonName = "Smith Felix" }
+                Model = new Customer() { DisplayDateOfBirth = "30-Oct-1974 (78y)", DisplayPersonName = "Smith Felix", TextList = new List<string>() { "Apple", "Orange", "Peach", "Plum", "All from the green grocer" } }
             });
 
             results.Add(new ItemViewModel<Customer>()

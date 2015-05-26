@@ -17,6 +17,8 @@ namespace TableCellResizeIssue.Controls.CustomCells
 
     using CoreGraphics;
 
+    using PatientHub.Framework.Touch.Controls;
+
     using TableCellResize.Core.ViewModels;
 
     using TableCellResizeIssue.Core.ViewModels;
@@ -41,6 +43,8 @@ namespace TableCellResizeIssue.Controls.CustomCells
         /// The Customer name label
         /// </summary>
         private UILabel customerNameLabel;
+
+        private UIImageView customerImageView;
 
         /// <summary>
         /// The born label
@@ -71,6 +75,11 @@ namespace TableCellResizeIssue.Controls.CustomCells
         /// The Customer number data label
         /// </summary>
         private UILabel customerNumberDataLabel;
+
+        /// <summary>
+        /// The Customer body text
+        /// </summary>
+        private StringStackPanel bodyText;
 
         /// <summary>
         /// Flag that indicates whether or not the constraints have been ran
@@ -228,7 +237,16 @@ namespace TableCellResizeIssue.Controls.CustomCells
             this.customerNameLabel.Lines = 0;
             this.customerNameLabel.LineBreakMode = UILineBreakMode.WordWrap;
             this.customerNameLabel.TranslatesAutoresizingMaskIntoConstraints = false;
-            
+
+            this.customerImageView = new UIImageView(UIImage.FromBundle("Patient25.png"))
+            {
+                TranslatesAutoresizingMaskIntoConstraints = false,
+                ContentMode = UIViewContentMode.Center,
+            };
+
+            this.bodyText = new StringStackPanel();
+            this.bodyText.TranslatesAutoresizingMaskIntoConstraints = false;
+
             this.bornLabel = new UILabel();
             this.bornLabel.Text = "Born";
             this.bornLabel.Font = UIFont.PreferredCaption1;
@@ -271,24 +289,35 @@ namespace TableCellResizeIssue.Controls.CustomCells
                     var set = this.CreateBindingSet<CustomerItemCell, ItemViewModel<Customer>>();
                     set.Bind(this.customerNameLabel).To(vm => vm.Model.DisplayPersonName);
                     set.Bind(this.bornDataLabel).To(vm => vm.Model.DisplayDateOfBirth);
-                    ////set.Bind(this.genderDataLabel).To(vm => vm.Model.DisplayPersonGender);
+                    set.Bind(this.bodyText).For(e => e.Items).To(vm => vm.Model.TextList);
                     ////set.Bind(this.customerNumberLabel).To(vm => vm.Model.DisplayCustomerNumberLabel);
                     ////set.Bind(this.customerNumberDataLabel).To(vm => vm.Model.DisplayCustomerNumber);
                     set.Bind().For(c => c.SelectedCommand).To(vm => vm.ClickCommand);
                     set.Apply();
                 });
 
-            this.ContentView.AddSubviews(this.customerNameLabel, this.bornLabel, this.bornDataLabel, this.genderLabel, this.genderDataLabel, this.customerNumberLabel, this.customerNumberDataLabel);
+            this.ContentView.AddSubviews(this.customerImageView, this.customerNameLabel, this.bodyText, this.bornLabel, this.bornDataLabel, this.genderLabel, this.genderDataLabel, this.customerNumberLabel, this.customerNumberDataLabel);
 
             this.ContentView.AddConstraints(
+                    this.customerImageView.AtTopOf(this.ContentView, 7),
+                    this.customerImageView.AtBottomOf(this.ContentView, 7),
+                    this.customerImageView.AtLeftOf(this.ContentView, 15));
+            
+            this.ContentView.AddConstraints(
                this.customerNameLabel.AtTopOf(this.ContentView, 7),
-               this.customerNameLabel.AtLeftOf(this.ContentView, 15),
+               this.customerNameLabel.AtLeftOf(this.ContentView, 15 + 30),
                this.customerNameLabel.AtRightOf(this.ContentView, 15));
 
             this.ContentView.AddConstraints(
-                this.bornLabel.Below(this.customerNameLabel),
+               this.bodyText.Below(this.customerNameLabel, 7),
+               this.bodyText.AtLeftOf(this.ContentView, 15 + 30),
+               this.bodyText.AtRightOf(this.ContentView, 15),
+               this.bodyText.Above(this.bornLabel));
+
+            this.ContentView.AddConstraints(
+                this.bornLabel.Below(this.bodyText),
                 this.bornLabel.AtBottomOf(this.ContentView, 5),
-                this.bornLabel.AtLeftOf(this.ContentView, 15),
+                this.bornLabel.WithSameLeft(this.customerNameLabel),
                 this.bornDataLabel.WithSameTop(this.bornLabel),
                 this.bornDataLabel.ToRightOf(this.bornLabel, LabelDataMargin),
                 this.bornDataLabel.AtBottomOf(this.ContentView, 5));

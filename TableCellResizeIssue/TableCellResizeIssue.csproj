@@ -89,6 +89,7 @@
   <ItemGroup>
     <Compile Include="Controls\CustomCells\CustomerItemCell.cs" />
     <Compile Include="Controls\CustomCells\CustomerItemTableViewSource.cs" />
+    <Compile Include="Controls\StringStackPanel.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LayoutConstraintSet.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
@@ -138,6 +139,9 @@
   <ItemGroup>
     <Content Include="AppDelegate.cs.txt" />
     <Content Include="Entitlements.plist" />
+    <BundleResource Include="Resources\Patient25.png" />
+    <BundleResource Include="Resources\Patient25%402x.png" />
+    <BundleResource Include="Resources\Patient25%403x.png" />
     <Content Include="ToDo-MvvmCross\_ Touch UI.txt" />
   </ItemGroup>
   <ItemGroup>

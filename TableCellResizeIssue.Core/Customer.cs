@@ -13,6 +13,8 @@ namespace TableCellResize.Core.ViewModels
 
         public string DisplayDateOfBirth { get; set; }
 
+        public List<string> TextList { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
