@@ -31,8 +31,8 @@ namespace TableCellResizeIssue.Core.ViewModels
         /// </summary>
         public SearchViewModel()
         {
-            this.CurrentSearchCriteria = string.Empty;
-            this.searchResults = new List<ItemViewModel<Customer>>();
+            /////this.CurrentSearchCriteria = string.Empty;
+            this.searchResults = this.SearchForSmi();
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace TableCellResizeIssue.Core.ViewModels
         /// <param name="searchCriteria">The search criteria</param>
         public void Init(string searchCriteria)
         {
-            this.CurrentSearchCriteria = string.IsNullOrEmpty(searchCriteria) ? string.Empty : searchCriteria;
+            this.CurrentSearchCriteria = string.IsNullOrEmpty(searchCriteria) ? "Smi" : searchCriteria;
         }
 
         /// <summary>
@@ -108,22 +108,22 @@ namespace TableCellResizeIssue.Core.ViewModels
 
             try
             {
-                if (this.CurrentSearchCriteria.ToLower() == "smi")
-                {
+                ////if (this.CurrentSearchCriteria.ToLower() == "smi")
+                ////{
                     this.SearchResults = this.SearchForSmi();
-                }
-                else if (this.CurrentSearchCriteria.ToLower() == "this")
-                {
-                    this.SearchResults = this.SearchForThis();
-                }
-                else if (this.CurrentSearchCriteria.ToLower() == "thi")
-                {
-                    this.SearchResults = this.SearchForThi();   
-                }
-                else
-                {
-                    this.SearchResults = new List<ItemViewModel<Customer>>();
-                }
+                ////}
+                ////else if (this.CurrentSearchCriteria.ToLower() == "this")
+                ////{
+                ////    this.SearchResults = this.SearchForThis();
+                ////}
+                ////else if (this.CurrentSearchCriteria.ToLower() == "thi")
+                ////{
+                ////    this.SearchResults = this.SearchForThi();   
+                ////}
+                ////else
+                ////{
+                ////    this.SearchResults = new List<ItemViewModel<Customer>>();
+                ////}
             }
             catch (Exception ex)
             {
@@ -137,7 +137,7 @@ namespace TableCellResizeIssue.Core.ViewModels
 
             results.Add(new ItemViewModel<Customer>()
             {
-                Model = new Customer() { DisplayDateOfBirth = "04-May-1954 (61y)", DisplayPersonName = "THI, Robert", TextList = new List<string>() { "Hello", "World" } }
+                Model = new Customer() { DisplayDateOfBirth = "04-May-1954 (61y)", DisplayPersonName = "THI, Robert", TextList = new List<string>() { "TextList1", "TextList2" } }
             });
 
             results.Add(new ItemViewModel<Customer>()
@@ -147,7 +147,7 @@ namespace TableCellResizeIssue.Core.ViewModels
 
             results.Add(new ItemViewModel<Customer>()
             {
-                Model = new Customer() { DisplayDateOfBirth = "04-May-1954 (61y)", DisplayPersonName = "THIBAUT, Alexander", TextList = new List<string>() { "Hello", "World", "Goodbye Cruel World" } }
+                Model = new Customer() { DisplayDateOfBirth = "04-May-1954 (61y)", DisplayPersonName = "THIBAUT, Alexander", TextList = new List<string>() { "TextList1", "TextList2", "Text List 3" } }
             });
 
             results.Add(new ItemViewModel<Customer>()
@@ -176,12 +176,12 @@ namespace TableCellResizeIssue.Core.ViewModels
 
             results.Add(new ItemViewModel<Customer>()
                             {
-                                Model = new Customer() { DisplayDateOfBirth = "30-Oct-1974 (78y)", DisplayPersonName = "Smith Barbara" }
+                                Model = new Customer() { DisplayDateOfBirth = "30-Oct-1974 (78y)", DisplayPersonName = "Smith Barbara", TextList = new List<string>() { "TextList1", "TextList2", "Text List 3" } }
                             });
 
             results.Add(new ItemViewModel<Customer>()
             {
-                Model = new Customer() { DisplayDateOfBirth = "30-Oct-1974 (78y)", DisplayPersonName = "Smith Chris" }
+                Model = new Customer() { DisplayDateOfBirth = "30-Oct-1974 (78y)", DisplayPersonName = "Smith Chris", TextList = new List<string>() { "TextList1", "TextList2" } }
             });
 
             results.Add(new ItemViewModel<Customer>()

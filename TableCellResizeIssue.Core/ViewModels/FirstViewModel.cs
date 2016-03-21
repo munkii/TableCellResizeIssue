@@ -2,6 +2,7 @@ using Cirrious.MvvmCross.ViewModels;
 
 namespace TableCellResizeIssue.Core.ViewModels
 {
+    using System.Collections.Generic;
     using System.Windows.Input;
 
     /// <summary>
@@ -16,13 +17,14 @@ namespace TableCellResizeIssue.Core.ViewModels
         {
             get
             {
-                return new MvxCommand(() => this.ShowViewModel<SearchViewModel>());
-            }
-        }
+                return
+                    new MvxCommand(
+                        () =>
+                        this.ShowViewModel<SearchViewModel>(new { searchCriteria = "Smi" }));
 
-        public void DoSomething()
-        {
-            this.ShowViewModel<SearchViewModel>();
+
+                ////(new Dictionary<string, string>() { "searchCriteria", "smi" }));
+            }
         }
     }
 }

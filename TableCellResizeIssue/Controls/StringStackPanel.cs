@@ -67,7 +67,7 @@ namespace PatientHub.Framework.Touch.Controls
 
         private void CreateStack()
         {
-            foreach (AutoLayoutLabel label in this.Subviews)
+            foreach (UILabel label in this.Subviews)
             {
                 label.RemoveFromSuperview();
             }
@@ -76,7 +76,7 @@ namespace PatientHub.Framework.Touch.Controls
             {
                 foreach (string item in this.Items)
                 {
-                    this.AddSubview(new AutoLayoutLabel()
+                    this.AddSubview(new UILabel()
                                               {
                                                   Font = UIFont.PreferredCaption1, 
                                                   BackgroundColor = UIColor.Red, 
@@ -87,8 +87,8 @@ namespace PatientHub.Framework.Touch.Controls
                                               });
                 }
 
-                this.LayoutManually();
-                ////this.LayoutWithFluent(this, null, this.Subviews);
+                ////this.LayoutManually();
+                this.LayoutWithFluentCopy(this, null, this.Subviews);
                 ////this.VerticalStackPanelConstraints(null, this.Subviews);
             }
 
@@ -97,6 +97,13 @@ namespace PatientHub.Framework.Touch.Controls
             this.InvalidateIntrinsicContentSize();
        }
 
+        /// <summary>
+        /// Layouts the Stack of Labels using a copy of FluentLayout's VerticalStackPanelConstraints. 
+        /// Allows easy experimenting with the if (parentView is UIScrollView) line
+        /// </summary>
+        /// <param name="parentView">The parent view.</param>
+        /// <param name="margins">The margins.</param>
+        /// <param name="views">The views.</param>
         private void LayoutWithFluentCopy(UIView parentView, Margins margins,
                                                                               params UIView[] views)
         {
@@ -117,11 +124,14 @@ namespace PatientHub.Framework.Touch.Controls
             this.AddConstraints(previous.Bottom().EqualTo().BottomOf(parentView).Minus(margins.Bottom));
         }
 
+        /// <summary>
+        /// Layouts the Stack of Labels using FluentLayout but without calling VerticalStackPanelConstraints
+        /// </summary>
         private void LayoutManually()
         {
-            AutoLayoutLabel previousLabel = null;
+            UILabel previousLabel = null;
 
-            foreach (AutoLayoutLabel label in this.Subviews)
+            foreach (UILabel label in this.Subviews)
             {
                 if (previousLabel == null)
                 {

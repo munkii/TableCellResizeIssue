@@ -19,8 +19,10 @@ namespace TableCellResizeIssue.Views
         {
             base.ViewDidLoad();
 
+            this.View.BackgroundColor = UIColor.White;
+
             UIButton searchButton = UIButton.FromType(UIButtonType.System);
-            searchButton.SetTitle("Search", UIControlState.Normal);
+            searchButton.SetTitle("PRESS THIS FOR REPRO", UIControlState.Normal);
             searchButton.TranslatesAutoresizingMaskIntoConstraints = false;
             searchButton.TouchUpInside += searchButton_TouchUpInside;
 
