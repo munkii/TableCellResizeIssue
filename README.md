@@ -1,15 +1,20 @@
 # TableCellResizeIssue
-Small MVVMCross iOS project to support this Stack Overflow question, **"UILabel not wrapping in UITableView until device rotate (iOS8)"** http://stackoverflow.com/questions/30099363/uilabel-not-wrapping-in-uitableview-until-device-rotate-ios8
-
 1. To exercise the project load it up in a Simulator or device
-2. Once the first View loads press "Search"
-3. The SearchViewModel has been edited specifically for this repro and does not perform a real search. It is hardcoded to support 3 search strings
+2. Once the first View loads press "PRESS THIS FOR REPRO"
+3. The SearchViewModel has been edited specifically for this repro and does not perform a real search. It is hardcoded to always return the same results
 
-  3.1 "smi" will return a couple of screens worth of results. All the items for without a need to wrap
-  
-  3.2 "thi" will return 4 results one of them comntain a customer record with a very long name that will causes wrapping
-  
-  3.3 "this" will return 1 result, the same customer record as 3.2
-  
+ 
+The CustomerItemCell uses a custom control derived from MvxView that stacks UILabels using StringStackPanel. For that stacking to work it needa the last item in the group to have a Bottom constraint. The current implementation of VerticalStackPanelConstraints in FluentLayout will only set a BottomConstraint if the parent is ScrollView.
+
+This seems wrong to me. The StringStackPanel has three options for laying out the Labels see lines 95,96 and 97 of CreateStack in StringStackPanel.cs. 
+
+* LayoutManually() lays out using FluentLayout without VerticalStackPanelConstraints
+* LayoutWithFluentCopy() is a copy of the VerticalStackPanelConstraints implementation with 'if (parentView is UIScrollView)' commented out
+* VerticalStackPanelConstraints simply calls the standard implementation
+
+
+
+
+
   
   
